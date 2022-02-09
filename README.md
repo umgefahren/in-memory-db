@@ -1,0 +1,1 @@
+[![CMake](https://github.com/umgefahren/in-memory-db/actions/workflows/cmake.yml/badge.svg)](https://github.com/umgefahren/in-memory-db/actions/workflows/cmake.yml)
