@@ -3,7 +3,8 @@
 //
 
 #include "objects.h"
-
+#include <memory>
+#include <string>
 
 unique_ptr<string> StringObject::getUniqueString() {
     auto ret = std::move(this->internal_value);
