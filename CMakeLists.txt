@@ -18,6 +18,8 @@ add_executable(in_memory_db main.cpp objects.cpp objects.h)
 
 add_library(objects objects.h objects.cpp)
 
+add_library(arraysort arraysort.h arraysort.cpp)
+
 enable_testing()
 
 add_executable(
@@ -25,12 +27,13 @@ add_executable(
         all_test.cpp
         hello_test.cpp
         objects_test.cpp
-)
+        arraysort_test.cpp)
 
 target_link_libraries(
         all_test
         gtest_main
         objects
+        arraysort
 )
 
 include(GoogleTest)
