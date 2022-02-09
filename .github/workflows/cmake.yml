@@ -20,27 +20,20 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Set up Clang
-      id: setup-clang
-      uses: egor-tensin/setup-clang@v1
-      with:
-        version: latest
-        platform: x64
-
     - name: Configure CMake
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
       env:
-        CC: ${{ steps.setup-clang.outputs.clang }}
-        CXX: ${{ steps.setup-clang.outputs.clangxx }}
+        CC: clang-11
+        CXX: clang++-11
 
     - name: Build
       # Build your program with the given configuration
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
       env:
-        CC: ${{ steps.setup-clang.outputs.clang }}
-        CXX: ${{ steps.setup-clang.outputs.clangxx }}
+        CC: clang-11
+        CXX: clang++-11
 
     - name: Test
       working-directory: ${{github.workspace}}/build
@@ -48,6 +41,6 @@ jobs:
       # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
       run: ctest -C ${{env.BUILD_TYPE}}
       env:
-        CC: ${{ steps.setup-clang.outputs.clang }}
-        CXX: ${{ steps.setup-clang.outputs.clangxx }}
+        CC: clang-11
+        CXX: clang++-11
 
